@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIZZERIA EXPRESS PRO - VIP</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #29578cee;
+            color: white;
+            text-align: center;
+        }
+
+        header {
+            background: #0d06a081;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .seccion-titulo {
+            background: #200808;
+            padding: 12px;
+            margin: 25px 0;
+            text-transform: uppercase;
+        }
+
+        .contenedor-productos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .producto {
+            background: #200808;
+            border-radius: 12px;
+            width: 250px;
+            padding: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            transition: .3s;
+        }
+
+        .producto:hover {
+            transform: translateY(-5px);
+        }
+
+        .producto img {
+            width: 100%;
+            border-radius: 10px;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        select,
+        input {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            border: none;
+            width: 85%;
+        }
+
+        button {
+            background: #4bc959;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            color: white;
+            transition: .3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #e76f51;
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            font-size: 1.1em;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .btn-pdf {
+            background: #c1121f;
+            display: none;
+            margin-top: 15px;
+        }
+
+        #carrito,
+        #datos,
+        #factura {
+            background: #0a0b15;
+            margin: 20px auto;
+            padding: 25px;
+            border-radius: 15px;
+            max-width: 800px;
+        }
+
+        #lista li {
+            background: rgba(255, 255, 255, 0.1);
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer {
+            background: rgb(60, 95, 84);
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        .redes-sociales {
+            margin-top: 15px;
+        }
+
+        .redes-sociales a {
+            color: white;
+            font-size: 26px;
+            margin: 0 10px;
+            transition: .3s;
+        }
+
+        .redes-sociales a:hover {
+            color: #ffd166;
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>🍕 PIZZERÍA EXPRESS PRO 🍕</h1>
+        <p>El Sabor Original en tu Mesa</p>
+        <p>📞 Contacto: +57 317 2422957</p>
+    </header>
+
+    <h2 class="seccion-titulo">🍕 MENÚ DE PIZZAS GOURMET 🍕</h2>
+    <section class="contenedor-productos">
+
+        <!-- PIZZAS -->
+        <div class="producto"><img src="https://images.pexels.com/photos/825661/pexels-photo-825661.jpeg">
+            <h3>PEPPERONI CLÁSICA</h3>
+            <select id="p1">
+                <option value="20000">Personal - $20.000</option>
+                <option value="30000">Mediana - $30.000</option>
+                <option value="40000">Familiar - $40.000</option>
+            </select>
+            <button onclick="agregarProducto('Pizza Pepperoni','p1')">AGREGAR</button>
+        </div>
+
+        <div class="producto"><img src="https://images.pexels.com/photos/2147491/pexels-photo-2147491.jpeg">
+            <h3>HAWAIANA REAL</h3>
+            <select id="p2">
+                <option value="22000">Personal - $22.000</option>
+                <option value="32000">Mediana - $32.000</option>
+                <option value="40000">Familiar - $40.000</option>
+            </select>
+            <button onclick="agregarProducto('Pizza Hawaiana','p2')">AGREGAR</button>
+        </div>
+
+        <div class="producto"><img src="https://images.pexels.com/photos/1437267/pexels-photo-1437267.jpeg">
+            <h3>HUERTA ESPECIAL</h3>
+            <select id="p3">
+                <option value="21000">Personal - $21.000</option>
+                <option value="31000">Mediana - $31.000</option>
+                <option value="55000">Familiar - $55.000</option>
+            </select>
+            <button onclick="agregarProducto('Pizza Veggie','p3')">AGREGAR</button>
+        </div>
+
+        <div class="producto"><img src="https://images.pexels.com/photos/825661/pexels-photo-825661.jpeg">
+            <h3>BBQ EXTREMA</h3>
+            <select id="p4">
+                <option value="23000">Personal - $23.000</option>
+                <option value="33000">Mediana - $33.000</option>
+                <option value="50000">Familiar - $50.000</option>
+            </select>
+            <button onclick="agregarProducto('Pizza BBQ','p4')">AGREGAR</button>
+        </div>
+
+        <div class="producto"><img src="https://images.pexels.com/photos/2619967/pexels-photo-2619967.jpeg">
+            <h3>MEXICANA EXPLOSIVA</h3>
+            <select id="p5">
+                <option value="25000">Personal - $25.000</option>
+                <option value="35000">Mediana - $35.000</option>
+                <option value="55000">Familiar - $55.000</option>
+            </select>
+            <button onclick="agregarProducto('Pizza Mexicana','p5')">AGREGAR</button>
+        </div>
+
+        <div class="producto"><img src="https://images.pexels.com/photos/1166120/pexels-photo-1166120.jpeg">
+            <h3>CUATRO QUESOS</h3>
+            <select id="p6">
+                <option value="24000">Personal - $24.000</option>
+                <option value="34000">Mediana - $34.000</option>
+                <option value="45000">Familiar - $45.000</option>
+            </select>
+            <button onclick="agregarProducto('Pizza 4 Quesos','p6')">AGREGAR</button>
+        </div>
+
+        <div class="producto"><img src="https://images.pexels.com/photos/1049620/pexels-photo-1049620.jpeg">
+            <h3>SÚPER CARNES</h3>
+            <select id="p7">
+                <option value="26000">Personal - $26.000</option>
+                <option value="38000">Mediana - $38.000</option>
+                <option value="50000">Familiar - $50.000</option>
+            </select>
+            <button onclick="agregarProducto('Pizza Carnes','p7')">AGREGAR</button>
+        </div>
+
+        <div class="producto"><img src="https://images.pexels.com/photos/365459/pexels-photo-365459.jpeg">
+            <h3>MARGARITA PREMIUM</h3>
+            <select id="p8">
+                <option value="19000">Personal - $19.000</option>
+                <option value="29000">Mediana - $29.000</option>
+                <option value="40000">Familiar - $40.000</option>
+            </select>
+            <button onclick="agregarProducto('Pizza Margarita','p8')">AGREGAR</button>
+        </div>
+
+    </section>
+
+    <h2 class="seccion-titulo">🥤 BEBIDAS Y JUGOS 🥤</h2>
+    <section class="contenedor-productos">
+
+        <div class="producto"><img src="https://images.pexels.com/photos/96974/pexels-photo-96974.jpeg">
+            <h3>GASEOSAS</h3>
+            <select id="b1">
+                <option value="5000">Coca-Cola 500ml - $5.000</option>
+                <option value="8000">Coca-Cola 1.5L - $8.000</option>
+                <option value="4500">Sprite 500ml - $4.500</option>
+                <option value="7500">Sprite 1.5L - $7.500</option>
+            </select>
+            <button onclick="agregarProducto('Gaseosa','b1')">AGREGAR</button>
+        </div>
+
+        <div class="producto"><img src="https://images.pexels.com/photos/1337825/pexels-photo-1337825.jpeg">
+            <h3>JUGOS NATURALES</h3>
+            <select id="j1">
+                <option value="6000">Mango - $6.000</option>
+                <option value="6000">Mora - $6.000</option>
+                <option value="7000">Limonada Cerezada - $7.000</option>
+                <option value="7000">Lulo - $7.000</option>
+
+            </select>
+            <button onclick="agregarProducto('Jugo Natural','j1')">AGREGAR</button>
+        </div>
+
+    </section>
+
+    <section id="carrito">
+        <h2>🛒 TU CARRITO 🛒</h2>
+        <ul id="lista" style="list-style:none;padding:0;"></ul>
+        <hr>
+        <h3>TOTAL : $<span id="Total">0</span></h3>
+        <button onclick="vaciar()" style="background:#2dcc52">VACIAR CARRITO</button>
+    </section>
+
+    <section id="datos">
+        <h2>📦 DATOS DE ENVIO 📦</h2>
+        <input type="text" id="nombre" placeholder="NOMBRE COMPLETO">
+        <input type="text" id="direccion" placeholder="DIRECCIÓN DE ENVÍO">
+        <select id="pago">
+            <option value="EFECTIVO">EFECTIVO</option>
+            <option value="TRANSFERENCIA">TRANSFERENCIA</option>
+            <option value="TARJETA">TARJETA</option>
+        </select><br><br>
+        <button class="btn-whatsapp" onclick="enviarPedido()"><i class="fab fa-whatsapp"></i> ENVIAR PEDIDO</button>
+    </section>
+
+    <section id="factura">
+        <h2>🧾 COMPROBANTE🧾</h2>
+        <p id="detalleFactura">Envía el pedido para generar el PDF.</p>
+        <button id="btnDescargar" class="btn-pdf" onclick="generarPDF()"><i class="fas fa-file-pdf"></i> DESCARGAR
+            PDF</button>
+    </section>
+
+    <footer>
+        <p>© 2026 Pizzería Express PRO | 📍Centro comercial Chipichape 2 piso</p>
+
+        <div class="redes-sociales">
+            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-telegram"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-pinterest"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-snapchat-ghost"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-discord"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-twitch"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-reddit"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="#" target="_blank"><i class="fas fa-map-marker-alt"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        let total = 0;
+        let pedido = [];
+        function agregarProducto(nombre, idSelect) {
+            let select = document.getElementById(idSelect);
+            let precio = parseInt(select.value);
+            let detalle = `${nombre} - $${precio.toLocaleString()}`;
+            pedido.push({ detalle, precio });
+            total += precio;
+            actualizarCarrito();
+        }
+
+
+        function actualizarCarrito() {
+            let lista = document.getElementById("lista");
+            lista.innerHTML = "";
+            pedido.forEach((p, i) => {
+                lista.innerHTML += `<li>${p.detalle}<span>$${p.precio.toLocaleString()}</span><button onclick="eliminar(${i})" style="background:red;padding:3px 6px;">X</button></li>`;
+            });
+            document.getElementById("Total").textContent = total.toLocaleString();
+        }
+
+        function eliminar(i) { total -= pedido[i].precio; pedido.splice(i, 1); actualizarCarrito(); }
+        function vaciar() { pedido = []; total = 0; actualizarCarrito(); document.getElementById("btnDescargar").style.display = "none"; }
+
+        function enviarPedido() {
+            let nombre = document.getElementById("nombre").value;
+            let direccion = document.getElementById("direccion").value;
+            if (pedido.length === 0 || nombre === "" || direccion === "") { alert("Completa datos y agrega productos"); return; }
+            let medioPago = document.getElementById("pago").value;
+
+            let mensaje = "🍕 NUEVO PEDIDO\n";
+            mensaje += "👤 Nombre: " + nombre + "\n";
+            mensaje += "📍 Dirección: " + direccion + "\n";
+            mensaje += "💳 Medio de pago: " + medioPago + "\n\n";
+            mensaje += "🧾 Productos:\n";
+
+            pedido.forEach(p => {
+                mensaje += "- " + p.detalle + "\n";
+            });
+
+            mensaje += "\n💰 TOTAL: $" + total;
+
+            // 🔑 SIEMPRE AL FINAL
+            mensaje = encodeURIComponent(mensaje);
+
+            window.open(`https://wa.me/573172422957?text=${mensaje}`, '_blank');
+
+            document.getElementById("detalleFactura").innerHTML = "<b>Pedido enviado ✔</b>";
+            document.getElementById("btnDescargar").style.display = "inline-block";
+        }
+
+        async function generarPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            doc.text("Factura Pizzería Express", 20, 20);
+            let y = 40;
+            pedido.forEach(p => { doc.text(p.detalle + " - $" + p.precio, 20, y); y += 10; });
+            doc.text("TOTAL: $" + total, 20, y + 10);
+            doc.save("factura.pdf");
+        }
+    </script>
+
+</body>
+
+</html>
